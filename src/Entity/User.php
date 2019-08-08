@@ -26,6 +26,8 @@ class User
      */
     private $mdp;
 
+    public $confirm_mdp; // pour confirmer le mot de passe, pas de champs car ne fait pas partie de la bdd
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -35,6 +37,14 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $role;
+
+
+    public function __construct()
+    {
+        $this->role('membre');
+    }
+
+
 
     public function getId(): ?int
     {
