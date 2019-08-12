@@ -3,5 +3,21 @@
 {% block title %}Hello SiteController!{% endblock %}
 
 {% block body %}
+
+<section class="articles">
+
+    {% for article in articles %}
+        <article>
+            <h2>{{ article.titreArticle }}</h2>
+            <div class="metadata"> Ecrit le {{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }}</div>
+            <div class="content">
+                <img src="{{ article.imageArticle }}" alt="" height=400 width=800>
+                {{ article.contenuArticle | raw }}
+            </div>
+        </article>
+
+    {% endfor %}
+
+</section>
    
 {% endblock %}

@@ -17,7 +17,6 @@ class RegistrationType extends AbstractType
             ->add('mdp', PasswordType::class)
             ->add('confirm_mdp', PasswordType::class) // pour encrypter le mot de passe quand on le tape
             ->add('email')
-            
         ;
     }
 
