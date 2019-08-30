@@ -3,11 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
+use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -26,6 +31,28 @@ class SiteController extends AbstractController
         ]);
     }
 
+    /**
+     *  @Route("/article", name="article")
+     */
+    public function article(ArticleRepository $repo)
+    {
+        $articles = $repo->findAll();
+
+        return $this->render('site/article.html.twig', [
+            'controller_name' => 'SiteController',
+            'articles' => $articles
+        ]);
+    }
+
+    /**
+     * @Route("/site/{id}", name="site_show")
+     */
+    public function show(){
+        return $this->render('site/show.html.twig');
+    }
+
+
+
     // fonction pour rediriger sur la page home
     /**
      * @Route("/", name="home")
@@ -36,52 +63,28 @@ class SiteController extends AbstractController
 
     /**
      * @Route("/site/new", name="site_create")
+     * @Route("/site/{id}/edit", name="site_edit")
      */
-    public function create(Request $request, ObjectManager $manager) {
-        $article = new Article();
+    public function form(Article $article = null, Request $request, ObjectManager $manager) {
+        
+        if(!$article) {
+            $article = new Article();
+        }
+        
 
-        $form = $this->createFormBuilder($article)
-                     ->add('titreArticle', TextType::class, [
-                         'attr' => [
-                             'placeholder' => "Titre de l'article"
-                         ]
-                     ])
-                     ->add('contenuArticle', TextareaType::class, [
-                         'attr' => [
-                             'placeholder' => "Contenu de l'article"
-                         ]
-                     ])
-                     ->add('imageArticle', TextType::class, [
-                         'attr' => [
-                             'placeholder' => "Image de l'article"
-                         ]
-                     ])
-                     ->add('titre2Article', TextType::class, [
-                         'attr' => [
-                             'placeholder' => "2eme Titre (optionnel)"
-                         ]
-                     ])
-                     ->add('contenu2Article', TextareaType::class, [
-                         'attr' => [
-                             'placeholder' => "2eme Paragraphe (optionnel)"
-                         ]
-                     ])
-                     ->add('image2Article', TextType::class, [
-                         'attr' => [
-                             'placeholder' => "2eme Image (optionnel)"
-                         ]
-                     ])
-                     ->add('titre3Article', TextType::class, [
-                         'attr' => [
-                             'placeholder' => "3eme Titre (optionnel)"
-                         ]
-                     ])
-                     ->add('contenu3Article', TextareaType::class, [
-                         'attr' => [
-                             'placeholder' => "3eme Paragraphe (optionnel)"
-                         ]
-                     ])
-                     ->getForm();
+        $form = $this->createForm(ArticleType::class, $article);
+
+        $article->setDateArticle(new \DateTime());
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+           
+
+            $manager->persist($article);
+            $manager->flush();
+
+            //return $this->redirectToRoute('site', ['id' => $article->getId()]);
+        }
 
         return $this->render('site/create.html.twig', [
             'formArticle' => $form->createView()

@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class ArticleFixtures extends Fixture

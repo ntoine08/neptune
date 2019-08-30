@@ -1,9 +1,27 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme formArticle 'bootstrap_4_layout.html.twig' %}
+
 {% block body %}
 
     <h1>Création d'un article</h1>
+    {{ form_start(formArticle) }}
+    {{ form_errors(formArticle)}}
+    {{ form_row(formArticle.titreArticle, {'attr': {'placeholder': "Titre de l'article"}}) }}
+    {{ form_row(formArticle.nonArticle) }}
+    {{ form_row(formArticle.category) }}
+    {{ form_row(formArticle.contenuArticle, {'attr': {'placeholder': "Contenu de l'article"}}) }}
+    {{ form_row(formArticle.imageArticle, {'attr': {'placeholder': "Image de l'article"}}) }}
+    {{ form_row(formArticle.titre2Article, {'attr': {'placeholder': "2eme Titre de l'article"}}) }}
+    {{ form_row(formArticle.contenu2Article, {'attr': {'placeholder': "2eme Contenu de l'article"}}) }}
+    {{ form_row(formArticle.image2Article, {'attr': {'placeholder': "2eme Image de l'article"}}) }}
+    {{ form_row(formArticle.titre3Article, {'attr': {'placeholder': "3eme Titre de l'article"}}) }}
+    {{ form_row(formArticle.contenu3Article, {'attr': {'placeholder': "3eme Contenu de l'article"}}) }}
 
-    {{ form(formArticle) }}
+    <button type="submit" class="btn btn-success">Ajouter l'article</button>
+
+    {{ form_end(formArticle) }}
+
+    
 
 {% endblock %}

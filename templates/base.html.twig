@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Neptune{% endblock %}</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css">
     {% block stylesheets %}{% endblock %}
 </head>
@@ -22,13 +22,16 @@
                     <a class="nav-link" href="{{ path('site') }}">Actualités</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Articles</a>
+                    <a class="nav-link" href="{{ path('article') }}">Articles</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('site_create') }}">Créer un article</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
                 </li>
 
                 {% if not app.user %}
