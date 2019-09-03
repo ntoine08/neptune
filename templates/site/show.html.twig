@@ -1,39 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Actualités{% endblock %}
-
 {% block body %}
 
 <section class="articles">
-
-    {% for article in articles %}
-        {% if article.NonArticle == 1%}
+    
         <article>
             <h2>{{ article.titreArticle }}</h2>
             <div class="metadata"> Ecrit le {{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }} dans la catégorie {{  article.category.nomCategory }}</div>
             <div class="content">
-                <img src="{{ article.imageArticle }}" alt="" height=400 width=800>
+                <img src="/{{ article.imageArticle }}" alt="" height=400 width=800>
                 {{ article.contenuArticle | raw }}
-                <a href="{{ path('site_show') }}" class="btn btn-primary">Lire la suite</a>
-
+                <h3>{{ article.titre2Article }}</h3>
+                <img src="{{ article.image2Article }}" alt="" height=400 width=800>
+                {{ article.contenu2Article | raw }}
+                <h3>{{ article.titre3Article }}</h3>
+                {{ article.contenu3Article | raw }}
             </div>
         </article>
 
         <section id="commentaires">
-            <div class="comment">
-                <div class="row">
-                    <div class="col-3">
-                    
-                    </div>
-                    <div class="col">
+            <h1>{{ article.commentaires | length }} Commentaires :</h1>
+            {% for commentaire in article.commentaires %}
+                <div class="comment">
+                    <div class="row">
+                        <div class="col-3">
+                            {{ commentaire.user.pseudo }} (<small>{{ commentaire.dateCommentaire | date('d/m/Y à H:i') }}</small>)
+                        </div>
+                        <div class="col">
+                            <p>{{ commentaire.contenuCommentaire | raw }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
+
+            {% if app.user %}
+            {{ form_start(commentaireForm) }}
+
+            {{ form_row(commentaireForm.contenuCommentaire, {'attr': {'placeholder': "Votre commentaire"} }) }}
+
+            <button type="submit" class="btn btn-success">Commenter</button>
+            {{ form_end(commentaireForm) }}
+
+            {% else %}
+                <h2>Vous ne pouvez pas commenter si vous n'êtes pas connecté</h2>
+                <a href="{{path('security_login')}}" class="btn btn-primary">Se connecter</a>
+            {% endif %}
         </section>
 
-    {% endif %}
-    {% endfor %}
-
+    
 </section>
    
 {% endblock %}

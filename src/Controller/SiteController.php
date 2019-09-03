@@ -5,7 +5,10 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Form\ArticleType;
+use App\Entity\Commentaire;
+use App\Form\CommentaireType;
 use App\Repository\ArticleRepository;
+
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,24 +47,7 @@ class SiteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/site/{id}", name="site_show")
-     */
-    public function show(){
-        return $this->render('site/show.html.twig');
-    }
-
-
-
-    // fonction pour rediriger sur la page home
-    /**
-     * @Route("/", name="home")
-     */
-    public function home() {
-        return $this->render('site/home.html.twig');
-    }
-
-    /**
+        /**
      * @Route("/site/new", name="site_create")
      * @Route("/site/{id}/edit", name="site_edit")
      */
@@ -90,6 +76,45 @@ class SiteController extends AbstractController
             'formArticle' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/site/{id}", name="site_show")
+     */
+    public function show(Article $article, Request $request, ObjectManager $manager){
+        $commentaire = new Commentaire();
+
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $commentaire->setDateCommentaire(new \DateTime())
+                        ->setUser($this->getUser()) // récupéré le user connecté et le définir sur le commentaire
+                        ->setArticle($article);
+            $manager->persist($commentaire);
+            $manager->flush();
+
+            return $this->redirectToRoute('site_show', ['id' => $article->getId()]);
+        }
+
+        
+        return $this->render('site/show.html.twig', [
+            'article' => $article,
+            'commentaireForm' => $form->createView()
+        ]);
+    }
+
+
+
+    // fonction pour rediriger sur la page home
+    /**
+     * @Route("/", name="home")
+     */
+    public function home() {
+        return $this->render('site/home.html.twig');
+    }
+
+
 
     
 }

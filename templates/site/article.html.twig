@@ -19,21 +19,11 @@
                 {{ article.contenu2Article | raw }}
                 <h3>{{ article.titre3Article }}</h3>
                 {{ article.contenu3Article | raw }}
+                <a href="{{ path('site_show',{'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
+
             </div>
         </article>
-
-        <section id="commentaires">
-            <div class="comment">
-                <div class="row">
-                    <div class="col-3">
-                    
-                    </div>
-                    <div class="col">
-                    </div>
-                </div>
-            </div>
-        </section>
-        
+      
     {% endif %}
     {% endfor %}
 
