@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Article;
 use App\Entity\User;
+use App\Entity\Article;
 use App\Form\RegistrationType;
 
+use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,4 +51,18 @@ class SecurityController extends AbstractController
      * @Route("/deconnexion", name="security_logout")
      */
     public function logout() {}
+
+    /**
+     * @Route("/administration", name="security_admin")
+     */
+    public function admin(ArticleRepository $repo){
+        $articles = $repo->findAll();
+
+
+        return $this->render('security/admin.html.twig', [
+            'controller_name' => 'SiteController',
+            'articles' => $articles,
+                   
+        ]);       
+    }
 }

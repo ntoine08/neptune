@@ -12,10 +12,10 @@
             <h2>{{ article.titreArticle }}</h2>
             <div class="metadata"> Ecrit le {{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }} dans la catégorie {{  article.category.nomCategory }}</div>
             <div class="content">
-                <img src="{{ article.imageArticle }}" alt="" height=400 width=800>
+                <img src="/image/{{ article.imageArticle }}" alt="" height=400 width=800>
                 {{ article.contenuArticle | raw }}
                 <h3>{{ article.titre2Article }}</h3>
-                <img src="{{ article.image2Article }}" alt="" height=400 width=800>
+                <img src="/image/{{ article.image2Article }}" alt="" height=400 width=800>
                 {{ article.contenu2Article | raw }}
                 <h3>{{ article.titre3Article }}</h3>
                 {{ article.contenu3Article | raw }}

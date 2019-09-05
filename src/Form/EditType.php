@@ -12,17 +12,15 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class ArticleType extends AbstractType
+class EditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('titreArticle')
             ->add('contenuArticle')
-            ->add('imageArticle', FileType::class) 
             ->add('titre2Article')
             ->add('contenu2Article')
-            ->add('image2Article', FileType::class)
             ->add('titre3Article')
             ->add('contenu3Article')
             ->add('category', EntityType::class, [
