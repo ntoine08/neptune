@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <table class="table table-hover">
         <thead>
             <tr>
@@ -19,7 +24,33 @@
                 <td>{{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }}</td>
                 <td>
                     <a href="{{ path('site_edit',{'id': article.id}) }}" class="btn btn-primary">Modifier</a>
-                    <button type="button" class="btn btn-danger">Supprimer</button>
+                    <a href="{{ path('removeArticle',{'id': article.id}) }}" class="btn btn-danger">Supprimer</a>
+                </tr>
+            </tbody>
+        
+        {% endfor %}
+    </table> 
+
+     <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">Pseudo</th>
+            <th scope="col">email</th>
+            <th scope="col">rôle</th>
+            <th scope="col">Fonctions</th>
+            </tr>
+        </thead>
+
+        {% for user in users %}
+        
+            <tbody>
+                <tr class="table-dark">
+                <th scope="row">{{ user.pseudo }}</th>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role}}</td>
+                <td>
+                    <a href="{{ path('site_edit',{'id': user.id}) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ path('removeArticle',{'id': user.id}) }}" class="btn btn-danger">Supprimer</a>
                 </tr>
             </tbody>
         

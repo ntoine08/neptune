@@ -9,15 +9,15 @@
     {% for article in articles %}
         {% if article.NonArticle == 1%}
         <article>
-            <h2>{{ article.titreArticle }}</h2>
+            <h2 class="gtitre">{{ article.titreArticle }}</h2>
             <div class="metadata"> Ecrit le {{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }} dans la catégorie {{  article.category.nomCategory }}</div>
             <div class="content">
-                <img src="/image/{{ article.imageArticle }}" alt="" height=400 width=800>
-                {{ article.contenuArticle | raw }}
+                <img class="image" src="/image/{{ article.imageArticle }}" alt="" height=600 width=1000>
+                {{ article.contenuArticle | raw }}<br>
                 <a href="{{ path('site_show',{'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
-
             </div>
         </article>
+        <hr>
         
     {% endif %}
     {% endfor %}

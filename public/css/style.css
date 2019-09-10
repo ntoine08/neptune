@@ -1,0 +1,46 @@
+/*////////////////////CSS DU FOOTER//////////////////////*/
+
+footer {
+    display: block;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+/*//////////////css du body//////////////////*/
+.main{
+    min-height: calc(100vh - 55px - 176px); /*tricher pour que le footer reste en bas*/
+}
+
+/*/////////////////css images/////////////////////////*/
+
+.image{
+    width: 100%
+}
+
+
+article a {
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+/*///////////////////////css du show/////////////////////////////*/
+
+.articles img{
+    margin-bottom: 2em;
+}
+
+.titre{
+    margin : 1em 0;
+}
+
+.gtitre{
+    padding: 0.5em;
+    text-align: center;
+    font-size: 3em!important; /*pour outrepasser bootstrap*/
+    font-weight: 300;
+}
+
+#commentaires a{
+    margin-bottom: 2em;
+}

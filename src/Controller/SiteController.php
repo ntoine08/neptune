@@ -2,20 +2,22 @@
 
 namespace App\Controller;
 
+use App\Form\EditType;
+use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Form\ArticleType;
-use App\Form\EditType;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
-use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 
+use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class SiteController extends AbstractController
@@ -126,8 +128,25 @@ class SiteController extends AbstractController
         ]);
         
         }
+
+     /**
+      * @Route("/article/remove/{id}", name="removeArticle")
+      */
+
+    public function remove ($id, ObjectManager $manager)
+        {
+            $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
+    
+                $manager->remove($article);
+                $manager->flush();
+    
+                $this->addFlash('success', 'L\'article a bien été supprimé !');
+            return $this->redirectToRoute('security_admin');
+        }
+    
+
     /**
-     * @Route("/site/{id}", name="site_show")
+     * @Route("/site{id}", name="site_show")
      */
     public function show(Article $article, Request $request, ObjectManager $manager){
         $commentaire = new Commentaire();

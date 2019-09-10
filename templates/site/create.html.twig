@@ -10,6 +10,10 @@
     {{ form_row(formArticle.titreArticle, {'attr': {'placeholder': "Titre de l'article"}}) }}
     {{ form_row(formArticle.nonArticle) }}
     {{ form_row(formArticle.category) }}
+    <div class="form-group">
+      <label for="exampleTextarea"></label>
+      <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+    </div>
     {{ form_row(formArticle.contenuArticle, {'attr': {'placeholder': "Contenu de l'article"}}) }}
     {{ form_row(formArticle.imageArticle, {'attr': {'placeholder': "Image de l'article"}}) }}
     {{ form_row(formArticle.titre2Article, {'attr': {'placeholder': "2eme Titre de l'article"}}) }}

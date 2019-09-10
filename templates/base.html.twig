@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Neptune{% endblock %}</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css">
     {% block stylesheets %}{% endblock %}
 </head>
@@ -28,28 +31,104 @@
                     <a class="nav-link" href="{{ path('site_create') }}">Créer un article</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="#">à propos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
                 </li>
 
                 {% if not app.user %}
-                    <li class="nav-item">
-                        <a href="{{ path('security_login') }}" class="nav-link">Connexion</a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ path('security_login') }}" class="nav-link">Connexion</a>
+                </li>
                 {% else %}
-                    <li class="nav-item">
-                        <a href="{{ path('security_logout') }}" class="nav-link">Déconnexion</a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ path('security_logout') }}" class="nav-link">Déconnexion</a>
+                </li>
                 {% endif %}
             </ul>
         </div>
     </nav>
-    <div class="container">
-    {% block body %}{% endblock %}
+
+    <div class="container main">
+        {% block body %}{% endblock %}
     </div>
+
+    <!-- Footer -->
+    <footer class="page-footer bg-dark pt-4">
+
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-6 mt-md-0 mt-3">
+
+                    <!-- Content -->
+                    <h5 class="text-uppercase">Neptune</h5>
+                    <p>Espace de partages et de débats.</p>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none pb-3">
+
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Notre espace</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="site">Actualités</a>
+                        </li>
+                        <li>
+                            <a href="article">Articles</a>
+                        </li>        
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Annexes</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">A propos</a>
+                        </li>
+                        <li>
+                            <a href="#!">Règlement</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2019 Copyright:
+            <a href="https://mdbootstrap.com/education/bootstrap/"> Neptune.com</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
     {% block javascripts %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

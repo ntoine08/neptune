@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Article;
 use App\Form\RegistrationType;
 
+use App\Repository\UserRepository;
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -55,13 +56,14 @@ class SecurityController extends AbstractController
     /**
      * @Route("/administration", name="security_admin")
      */
-    public function admin(ArticleRepository $repo){
+    public function admin(ArticleRepository $repo, UserRepository $userRepo){
         $articles = $repo->findAll();
-
-
+        $users = $userRepo->findAll();
+        
         return $this->render('security/admin.html.twig', [
             'controller_name' => 'SiteController',
             'articles' => $articles,
+            'users' => $users 
                    
         ]);       
     }
