@@ -10,19 +10,15 @@
     {{ form_row(formArticle.titreArticle, {'attr': {'placeholder': "Titre de l'article"}}) }}
     {{ form_row(formArticle.nonArticle) }}
     {{ form_row(formArticle.category) }}
-    <div class="form-group">
-      <label for="exampleTextarea"></label>
-      <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-    </div>
     {{ form_row(formArticle.contenuArticle, {'attr': {'placeholder': "Contenu de l'article"}}) }}
-    {{ form_row(formArticle.imageArticle, {'attr': {'placeholder': "Image de l'article"}}) }}
+    {{ form_row(formArticle.imageArticle) }}
     {{ form_row(formArticle.titre2Article, {'attr': {'placeholder': "2eme Titre de l'article"}}) }}
     {{ form_row(formArticle.contenu2Article, {'attr': {'placeholder': "2eme Contenu de l'article"}}) }}
     {{ form_row(formArticle.image2Article, {'attr': {'placeholder': "2eme Image de l'article"}}) }}
     {{ form_row(formArticle.titre3Article, {'attr': {'placeholder': "3eme Titre de l'article"}}) }}
     {{ form_row(formArticle.contenu3Article, {'attr': {'placeholder': "3eme Contenu de l'article"}}) }}
 
-    <button type="submit" class="btn btn-success">Ajouter l'article</button>
+    <button type="submit" class="btn btn-success" style="margin-bottom: 2em">Ajouter l'article</button>
 
     {{ form_end(formArticle) }}
 

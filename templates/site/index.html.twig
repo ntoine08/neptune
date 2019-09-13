@@ -13,11 +13,10 @@
             <div class="metadata"> Ecrit le {{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }} dans la catégorie {{  article.category.nomCategory }}</div>
             <div class="content">
                 <img class="image" src="/image/{{ article.imageArticle }}" alt="" height=600 width=1000>
-                {{ article.contenuArticle | raw }}<br>
                 <a href="{{ path('site_show',{'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
             </div>
         </article>
-        <hr>
+        <hr class="std">
         
     {% endif %}
     {% endfor %}

@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
 
 <section class="articles">
     
@@ -26,9 +31,11 @@
                         <div class="col-3">
                             {{ commentaire.user.pseudo }} (<small>{{ commentaire.dateCommentaire | date('d/m/Y à H:i') }}</small>)
                         </div>
+                        
                         <div class="col">
                             <p>{{ commentaire.contenuCommentaire | raw }}</p>
                         </div>
+                        <a href="{{ path('removeCommentaire',{'id': commentaire.id}) }}" class="btn btn-danger">Supprimer</a>
                     </div>
                 </div>
             {% endfor %}

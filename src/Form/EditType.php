@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class EditType extends AbstractType
 {
@@ -18,11 +19,11 @@ class EditType extends AbstractType
     {
         $builder
             ->add('titreArticle')
-            ->add('contenuArticle')
+            ->add('contenuArticle', TextareaType::class)
             ->add('titre2Article')
-            ->add('contenu2Article')
+            ->add('contenu2Article', TextareaType::class)
             ->add('titre3Article')
-            ->add('contenu3Article')
+            ->add('contenu3Article', TextareaType::class)
             ->add('category', EntityType::class, [
                         'class' => Category::class,
                         'choice_label' => "nomCategory"

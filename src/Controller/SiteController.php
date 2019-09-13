@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\TextareaType;
 use App\Form\EditType;
 use App\Entity\User;
 use App\Entity\Article;
@@ -143,6 +144,37 @@ class SiteController extends AbstractController
                 $this->addFlash('success', 'L\'article a bien été supprimé !');
             return $this->redirectToRoute('security_admin');
         }
+
+    /**
+      * @Route("/user/remove/{id}", name="removeUser")
+      */
+
+      public function removeUser ($id, ObjectManager $manager)
+      {
+          $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+  
+              $manager->remove($user);
+              $manager->flush();
+  
+              $this->addFlash('success', 'La personne a bien été supprimé !');
+          return $this->redirectToRoute('security_admin');
+      }
+
+    /**
+      * @Route("/commentaire/remove/{id}", name="removeCommentaire")
+        
+      */
+
+      public function removeCommentaire (Commentaire $commentaire, ObjectManager $manager)
+      {
+        //   $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->find($id);
+              $article = $commentaire->getArticle();
+              $manager->remove($commentaire);
+              $manager->flush();
+  
+              $this->addFlash('success', 'Le commentaire a bien été supprimé !');
+          return $this->redirectToRoute('site_show', ['id' => $article->getId()]);
+      }
     
 
     /**

@@ -27,13 +27,13 @@ class Commentaire
     private $dateCommentaire;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commentaires")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\article", inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="commentaires")
      * @ORM\JoinColumn(nullable=false)
      */
     private $article;
