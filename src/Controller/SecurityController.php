@@ -54,17 +54,36 @@ class SecurityController extends AbstractController
     public function logout() {}
 
     /**
-     * @Route("/administration", name="security_admin")
+     * @Route("/administration/{page<\d+>?1}", name="security_admin")
      */
-    public function admin(ArticleRepository $repo, UserRepository $userRepo){
-        $articles = $repo->findAll();
-        $users = $userRepo->findAll();
+    public function admin(ArticleRepository $repo, UserRepository $userRepo, $page){
+        $limit = 10;
+
+        $start = $page * $limit - $limit; // 1 * 10 = 10 - 10 = 0 / 2 * 10 = 20 - 10 = 10 donc je part du 10eme article
+
+        $articles = $repo->findBy([], [], $limit, $start);
+
+        $total = count($repo->findAll());
+        $pages = ceil($total / $limit); 
+
+        $limits = 10;
+
+        $starts = $page * $limits - $limits;
+
+        $users = $userRepo->findBy([], [], $limits, $starts);
+
+        $totals = count($repo->findAll());
+        $pagess = ceil($totals / $limits);
+
+        
         
         return $this->render('security/admin.html.twig', [
             'controller_name' => 'SiteController',
             'articles' => $articles,
-            'users' => $users 
-                   
+            'users' => $users, 
+            'pagess' => $pagess, 
+            'pages' => $pages,
+            'page' => $page   
         ]);       
     }
 }

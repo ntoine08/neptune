@@ -5,7 +5,6 @@
 {% block body %}
 
 <section class="articles">
-
     {% for article in articles %}
         {% if article.NonArticle == 1%}
         <article>
@@ -18,9 +17,26 @@
         </article>
         <hr class="std">
         
-    {% endif %}
+        {% endif %}
     {% endfor %}
-
+        <div class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item {% if page == 1 %}disabled{% endif %}">
+                <a class="page-link" href="{{ path('site', {'page': page - 1}) }}">&laquo;</a>
+                </li>
+                {% for i in 1..pages %}
+                <li class="page-item {% if page == i %}active{% endif %}">
+                <a class="page-link" href="{{ path('site', {'page': i}) }}">{{ i }}</a>
+                </li>
+                {% endfor %}
+                <li class="page-item {% if page == pages %}disabled{% endif %}">
+                <a class="page-link" href="{{ path('site', {'page': page + 1}) }}">&raquo;</a>
+                </li>
+            </ul>
+        </div>
+        
 </section>
+
+    
    
 {% endblock %}

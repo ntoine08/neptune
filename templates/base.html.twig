@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Neptune{% endblock %}</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css">
@@ -35,7 +35,7 @@
                 {% endif %}
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">à propos</a>
+                    <a class="nav-link" href="{{ path('propos') }}">à propos</a>
                 </li>
 
                 {% if not app.user %}
@@ -108,10 +108,10 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!">A propos</a>
+                            <a href="{{ path('propos') }}">A propos</a>
                         </li>
                         <li>
-                            <a href="#!">Règlement</a>
+                            <a href="{{ path('reglement') }}">Règlement</a>
                         </li>
                     </ul>
 

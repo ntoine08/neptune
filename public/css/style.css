@@ -14,7 +14,8 @@ footer {
 /*/////////////////css images/////////////////////////*/
 
 .image{
-    width: 100%
+    width: 100%;
+    margin-bottom: 1em;
 }
 
 
@@ -69,3 +70,12 @@ button{
 .nav-item{
     border-right: 1px solid white!important;
 }
+
+/*/////////////////////////css de la page a propos//////////////////////////////////////////*/
+
+.para{
+    font-size: 1em!important;
+    text-align: center;
+    margin-top: 1em;
+}
+

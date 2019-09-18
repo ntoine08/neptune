@@ -22,10 +22,10 @@ class ArticleType extends AbstractType
             ->add('contenuArticle', TextareaType::class)
             ->add('imageArticle', FileType::class) 
             ->add('titre2Article')
-            ->add('contenu2Article', TextareaType::class)
+            ->add('contenu2Article', TextareaType::class,['required'=>false])
             ->add('image2Article', FileType::class,['required'=>false])
             ->add('titre3Article')
-            ->add('contenu3Article', TextareaType::class)
+            ->add('contenu3Article', TextareaType::class,['required'=>false])
             ->add('category', EntityType::class, [
                         'class' => Category::class,
                         'choice_label' => "nomCategory"

@@ -24,28 +24,44 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SiteController extends AbstractController
 {
     /**
-     * @Route("/site", name="site")
+     * @Route("/site/{page<\d+>?1}", name="site")
      */
-    public function index(ArticleRepository $repo)
+    public function index(ArticleRepository $repo, $page)
     {
-        $articles = $repo->findAll();
+        $limit = 5;
+
+        $start = $page * $limit - $limit;
+
+        $articles = $repo->findBy([], [], $limit, $start);
+        $total = count($repo->findAll());
+        $pages = ceil($total / $limit);
 
         return $this->render('site/index.html.twig', [
             'controller_name' => 'SiteController',
-            'articles' => $articles
+            'articles' => $articles,
+            'pages' => $pages,
+            'page' => $page  
         ]);
     }
 
     /**
-     *  @Route("/article", name="article")
+     *  @Route("/article/{page<\d+>?1}", name="article")
      */
-    public function article(ArticleRepository $repo)
+    public function article(ArticleRepository $repo, $page)
     {
-        $articles = $repo->findAll();
+        $limit = 5;
 
+        $start = $page * $limit - $limit;
+
+        $articles = $repo->findBy([], [], $limit, $start);
+        $total = count($repo->findAll());
+        $pages = ceil($total / $limit);
+        
         return $this->render('site/article.html.twig', [
             'controller_name' => 'SiteController',
-            'articles' => $articles
+            'articles' => $articles,
+            'pages' => $pages,
+            'page' => $page  
         ]);
     }
 
@@ -212,6 +228,20 @@ class SiteController extends AbstractController
      */
     public function home() {
         return $this->render('site/home.html.twig');
+    }
+
+    /**
+     * @Route("/àPropos", name="propos")
+     */
+    public function propos() {
+        return $this->render('site/propos.html.twig');
+    }
+
+    /**
+     * @Route("/reglement", name="reglement")
+     */
+    public function reglement() {
+        return $this->render('site/reglement.html.twig');
     }
 
 
