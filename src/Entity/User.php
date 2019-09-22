@@ -60,12 +60,6 @@ class User implements UserInterface
     private $email;
 
     /**
-     * // mettre integer pour choisir le role
-     * @ORM\Column(type="integer")
-     */
-    private $role;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="user")
      */
     private $articles;
@@ -75,11 +69,16 @@ class User implements UserInterface
      */
     private $commentaires;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Role", inversedBy="users")
+     */
+    private $roleUser;
+
     public function __construct()
     {
-        $this->role = self::MEMBRE;
         $this->articles = new ArrayCollection();
-        $this->commentaires = new ArrayCollection();//construct qui équivaut à new user
+        $this->commentaires = new ArrayCollection();
+        $this->roleUser = new ArrayCollection();//construct qui équivaut à new user
     }
 
     public function getId(): ?int
@@ -126,7 +125,11 @@ class User implements UserInterface
     public function getSalt() {}
 
     public function getRoles() {
-        return ['ROLE_USER'];
+        $roles = $this->roleUser->map(function($role){
+            return $role->getNom();
+        })->toArray();
+        $roles[] = 'ROLE_USER';
+        return $roles;
     }
 
     public function getEmail(): ?string
@@ -137,18 +140,6 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    public function getRole(): ?int
-    {
-        return $this->role;
-    }
-
-    public function setRole(int $role): self // mettre int parce que c'est un chiffre
-    {
-        $this->role = $role;
 
         return $this;
     }
@@ -210,6 +201,32 @@ class User implements UserInterface
             if ($commentaire->getUser() === $this) {
                 $commentaire->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Role[]
+     */
+    public function getRoleUser(): Collection
+    {
+        return $this->roleUser;
+    }
+
+    public function addRoleUser(Role $roleUser): self
+    {
+        if (!$this->roleUser->contains($roleUser)) {
+            $this->roleUser[] = $roleUser;
+        }
+
+        return $this;
+    }
+
+    public function removeRoleUser(Role $roleUser): self
+    {
+        if ($this->roleUser->contains($roleUser)) {
+            $this->roleUser->removeElement($roleUser);
         }
 
         return $this;

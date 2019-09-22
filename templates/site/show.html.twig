@@ -14,12 +14,12 @@
             <div class="metadata"> Ecrit le {{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }} dans la catégorie {{  article.category.nomCategory }}</div>
             <div class="content">
                 <img class="image" src="/image/{{ article.imageArticle }}" alt="">
-                {{ article.contenuArticle | raw }}
+                <p class="ppp">{{ article.contenuArticle | raw }}</p>
                 <h3 class="titre">{{ article.titre2Article }}</h3>
                 <img class="image" src="/image/{{ article.image2Article }}" alt="">
-                {{ article.contenu2Article | raw }}
+                <p class="ppp">{{ article.contenu2Article | raw }}</p>
                 <h3 class="titre">{{ article.titre3Article }}</h3>
-                {{ article.contenu3Article | raw }}
+                <p class="ppp">{{ article.contenu3Article | raw }}</p>
             </div>
         </article>
 
@@ -35,7 +35,9 @@
                         <div class="col">
                             <p>{{ commentaire.contenuCommentaire | raw }}</p>
                         </div>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('removeCommentaire',{'id': commentaire.id}) }}" class="btn btn-danger">Supprimer</a>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

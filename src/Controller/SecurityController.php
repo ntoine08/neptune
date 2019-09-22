@@ -11,6 +11,7 @@ use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -55,6 +56,7 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/administration/{page<\d+>?1}", name="security_admin")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function admin(ArticleRepository $repo, UserRepository $userRepo, $page){
         $limit = 10;

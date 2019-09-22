@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use App\Form\TextareaType;
-use App\Form\EditType;
 use App\Entity\User;
+use App\Form\EditType;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Form\ArticleType;
+use App\Form\TextareaType;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Repository\UserRepository;
@@ -18,6 +18,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -78,6 +79,8 @@ class SiteController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
 
         $article->setDateArticle(new \DateTime());
+                
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -178,7 +181,7 @@ class SiteController extends AbstractController
 
     /**
       * @Route("/commentaire/remove/{id}", name="removeCommentaire")
-        
+      * @Security("is_granted('ROLE_ADMIN')")
       */
 
       public function removeCommentaire (Commentaire $commentaire, ObjectManager $manager)
