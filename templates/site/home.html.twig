@@ -4,23 +4,44 @@
 
 {% include 'site/slider.html.twig' %}
 
-    <h1 class="ggtitre">Bienvenue sur neptune</h1>
+    <h1 class="ggtitre">Bienvenue sur Neptune</h1>
     <hr class="std">
-    <div class="row">
-        <div class="col col-md-6 col-sm-12">
-            <p class="pp">Neptune est un site communautaire ou sont partagés des articles et des débats, vous pouvez consulter voir partager et écrire des sujets. Les sujets sont nombreux et variés : l'histoire, la géopolitique, l'espace, le sport et bien d'autres peuvent être publiés, la seule chose qui vous ai demandé est simple : suivre les règles. <a href="{{ path('reglement') }}">Aller ici</a></p>
-        </div>
-        <div class="col col-md-6 col-sm-12">
-            <img class="image" src="/image/saturne1.jpeg" alt="">
+    
+    <div class="card my-5" style="max-width: 100%;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="/image/saturne1.jpeg" class="card-img" style="height: 100%;" alt="...">
+            </div>
+            <div class="col-md-8 h-100">
+                <div class="card-body pp">
+                    <h5 class="card-title">Neptune</h5>
+                    <p class="card-text">Neptune est un site communautaire où sont partagés des articles et des débats.
+                        Vous pouvez consulter, voir, partager et écrire des sujets. Les sujets sont nombreux et variés :
+                        l'histoire, la géopolitique, l'espace, le sport et bien d'autres peuvent être publiés, 
+                        la seule chose qui vous soit demandée est simple : suivre les règles.</p>
+                    <p class="card-text"><a href="{{ path('reglement') }}">Aller ici</a></p>
+                </div>
+            </div>
         </div>
     </div>
+
     <hr class="std">
-    <div class="row">
-        <div class="col col-md-6 col-sm-12">
-            <img class="image" src="/image/pluton1.jpg" alt="">
-        </div>
-        <div class="col col-md-6 col-sm-12">
-            <p class="pp">Ici vous pouvez partager vos opinion, idées, vous rencontrerez de nouvelles personnes avec qui vous pourrez apprendre du monde qui nous entoure, la bienveillance et le partage sont des valeurs auquelles nous attachons beaucoup d'importance, n'hésiter plus à nous rejoindre si vous partager nos convictions. <a href="{{ path('security_registration') }}">Inscrivez-vous !</a></p>
+    
+    <div class="card my-5" style="max-width: 100%;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="/image/pluton1.jpg" class="card-img" style="height: 100%;" alt="...">
+            </div>
+            <div class="col-md-8 h-100">
+                <div class="h-100 card-body pp">
+                    <h5 class="card-title">La communauté</h5>
+                    <p class="card-text">Ici vous pouvez partager vos opinions et vos idées.
+                        Vous rencontrerez de nouvelles personnes avec qui vous pourrez discuter du monde qui nous entoure.
+                        La bienveillance et le partage sont des valeurs auxquelles nous attachons beaucoup d'importance. N'hésitez plus
+                        à nous rejoindre si vous partagez nos convictions ! </p>
+                    <p class="card-text"><a href="{{ path('security_registration') }}">Aller ici</a></p>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

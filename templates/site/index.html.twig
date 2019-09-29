@@ -5,17 +5,24 @@
 {% block body %}
 
 <section class="articles">
-    {% for article in articles %}
+    
+ {% for article in articles %}
         {% if article.NonArticle == 1%}
-        <article>
-            <h2 class="gtitre">{{ article.titreArticle }}</h2>
-            <div class="metadata"> Ecrit le {{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }} dans la catégorie {{  article.category.nomCategory }}</div>
-            <div class="content">
-                <img class="image2" src="/image/{{ article.imageArticle }}" alt="" height=600 width=1000>
-                 <p class="pp">{{ article.contenuArticle | raw }}</p>
-                <a href="{{ path('site_show',{'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
+        <div class="card my-5" style="max-width: 100%;">
+            <div class="row no-gutters">
+                <div class="">
+                <img src="/image/{{ article.imageArticle }}" class="card-img-top" alt="...">
+                </div>
+                <div>
+                    <div class="card-body pp">
+                        <h5 class="card-title">{{ article.titreArticle }}</h5>
+                        <p class="card-text"><small class="text-muted"> Ecrit le {{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }} dans la catégorie {{  article.category.nomCategory }}</small></p>
+                        <p class="card-text">{{ article.contenuArticle | raw }}</p>
+                        <a href="{{ path('site_show',{'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
+                    </div>
+                </div>
             </div>
-        </article>
+        </div>
         <hr class="std">
         
         {% endif %}

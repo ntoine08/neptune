@@ -21,9 +21,9 @@ class EditType extends AbstractType
             ->add('titreArticle')
             ->add('contenuArticle', TextareaType::class)
             ->add('titre2Article')
-            ->add('contenu2Article', TextareaType::class)
+            ->add('contenu2Article', TextareaType::class,['required'=>false])
             ->add('titre3Article')
-            ->add('contenu3Article', TextareaType::class)
+            ->add('contenu3Article', TextareaType::class,['required'=>false])
             ->add('category', EntityType::class, [
                         'class' => Category::class,
                         'choice_label' => "nomCategory"

@@ -18,13 +18,13 @@
         {% for article in articles %}
         
             <tbody>
-                <tr class="table-dark">
+                <tr class="table-secondary">
                 <th scope="row">{{ article.titreArticle }}</th>
                 <td>User</td>
                 <td>{{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }}</td>
                 <td>
-                    <a href="{{ path('site_edit',{'id': article.id}) }}" class="btn btn-primary">Modifier</a>
-                    <a href="{{ path('removeArticle',{'id': article.id}) }}" class="btn btn-danger">Supprimer</a>
+                    <a class="btn btn-success" href="{{ path('site_edit',{'id': article.id}) }}">Modifier</a>
+                    <a class="btn btn-danger" href="{{ path('removeArticle',{'id': article.id}) }}">Supprimer</a>
                 </tr>
             </tbody>
         
@@ -58,7 +58,7 @@
         {% for user in users %}
         
             <tbody>
-                <tr class="table-dark">
+                <tr class="table-secondary">
                 <th scope="row">{{ user.pseudo }}</th>
                 <td>{{ user.email }}</td>
                 <td>

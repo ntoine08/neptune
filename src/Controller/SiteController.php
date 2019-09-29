@@ -113,9 +113,9 @@ class SiteController extends AbstractController
 
             $manager->persist($article);
             $manager->flush();
-
             //return $this->redirectToRoute('site', ['id' => $article->getId()]);
         }
+        $this->addFlash('success', 'L\'article a bien été enregistré !');
         return $this->render('site/create.html.twig', [
             'formArticle' => $form->createView(),
             'editMode' => $article->getId() !== null,
@@ -141,6 +141,7 @@ class SiteController extends AbstractController
             $manager->persist($article);
             $manager->flush();
         }
+        $this->addFlash('success', 'L\'article a bien été modifié !');
 
         return $this->render('site/edit.html.twig', [
             'formArticle' => $form->createView(),
