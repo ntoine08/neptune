@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container main">
     <h1>Inscrivez vous</h1>
 
     {{ form_start(form) }}
@@ -13,4 +14,5 @@
     <button type="submit" class="btn btn-success">Inscription</button>
     
     {{ form_end(form) }}
+</div>
 {% endblock %}

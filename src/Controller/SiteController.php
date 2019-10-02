@@ -27,7 +27,7 @@ class SiteController extends AbstractController
     /**
      * @Route("/site/{page<\d+>?1}", name="site")
      */
-    public function index(ArticleRepository $repo, $page)
+    public function index(ArticleRepository $repo, $page) //fonction pour afficher les actualités
     {
         $limit = 5;
 
@@ -48,7 +48,7 @@ class SiteController extends AbstractController
     /**
      *  @Route("/article/{page<\d+>?1}", name="article")
      */
-    public function article(ArticleRepository $repo, $page)
+    public function article(ArticleRepository $repo, $page) // fonction pour afficher les articles
     {
         $limit = 5;
 
@@ -71,14 +71,14 @@ class SiteController extends AbstractController
      */
     public function form(Article $article = null, Request $request, ObjectManager $manager) {
         
-        
+        //fonction pour crée un article
         if(!$article) {
             $article = new Article();
         }
         
         $form = $this->createForm(ArticleType::class, $article);
 
-        $article->setDateArticle(new \DateTime());
+        $article->setDateArticle(new \DateTime()); // pour mettre la date ou l'article est crée
                 
 
         $form->handleRequest($request);
@@ -87,10 +87,10 @@ class SiteController extends AbstractController
            
             $imagee = $form->get('imageArticle')->getData();
                 if($imagee != NULL) {
-                    $namee = $article->getId().''.mt_rand(0,1000000);
-                    $imageNamee = $namee.'.'. $imagee->guessExtension();
-                    $imagee->move(
-                        $this->getParameter('image_directory'),
+                    $namee = $article->getId().''.mt_rand(0,1000000);// donne un numéro au hasard a l'image quand elle est envoyer dans le dossier
+                    $imageNamee = $namee.'.'. $imagee->guessExtension();// récupère l'extension du fichier
+                    $imagee->move( // déplacé l'image
+                        $this->getParameter('image_directory'), 
                         $imageNamee
                     );
                     $article->setImageArticle($imageNamee);
@@ -111,11 +111,12 @@ class SiteController extends AbstractController
                     $article->setImage2Article('marseille.jpg');
                 }
 
-            $manager->persist($article);
-            $manager->flush();
+            $manager->persist($article); //gardé
+            $manager->flush(); //envoyé
+            $this->addFlash('success', 'L\'article a bien été enregistré !');
             //return $this->redirectToRoute('site', ['id' => $article->getId()]);
         }
-        $this->addFlash('success', 'L\'article a bien été enregistré !');
+        
         return $this->render('site/create.html.twig', [
             'formArticle' => $form->createView(),
             'editMode' => $article->getId() !== null,
@@ -125,7 +126,7 @@ class SiteController extends AbstractController
     /**
      * @Route("/site/{id}/edit", name="site_edit")
      */
-    public function edit(Article $article = null, Request $request, ObjectManager $manager) {
+    public function edit(Article $article = null, Request $request, ObjectManager $manager) { // pour modifier l'article
             
         if(!$article) {
             $article = new Article();
@@ -140,8 +141,9 @@ class SiteController extends AbstractController
 
             $manager->persist($article);
             $manager->flush();
+            $this->addFlash('success', 'L\'article a bien été modifié !');
         }
-        $this->addFlash('success', 'L\'article a bien été modifié !');
+        
 
         return $this->render('site/edit.html.twig', [
             'formArticle' => $form->createView(),
@@ -154,7 +156,7 @@ class SiteController extends AbstractController
       * @Route("/article/remove/{id}", name="removeArticle")
       */
 
-    public function remove ($id, ObjectManager $manager)
+    public function remove ($id, ObjectManager $manager)// pour supprimer l'article
         {
             $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
     
@@ -169,12 +171,12 @@ class SiteController extends AbstractController
       * @Route("/user/remove/{id}", name="removeUser")
       */
 
-      public function removeUser ($id, ObjectManager $manager)
+      public function removeUser ($id, ObjectManager $manager) // pour supprimer un utilisateur
       {
-          $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+          $user = $this->getDoctrine()->getRepository(User::class)->find($id); // avoir l'id de l'utilisateur qu'on va supprimer
   
-              $manager->remove($user);
-              $manager->flush();
+              $manager->remove($user); //pour supprimer
+              $manager->flush(); // valider
   
               $this->addFlash('success', 'La personne a bien été supprimé !');
           return $this->redirectToRoute('security_admin');
@@ -185,7 +187,7 @@ class SiteController extends AbstractController
       * @Security("is_granted('ROLE_ADMIN')")
       */
 
-      public function removeCommentaire (Commentaire $commentaire, ObjectManager $manager)
+      public function removeCommentaire (Commentaire $commentaire, ObjectManager $manager) // pour supprimer un commentaire
       {
         //   $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->find($id);
               $article = $commentaire->getArticle();
@@ -199,7 +201,8 @@ class SiteController extends AbstractController
 
     /**
      * @Route("/site{id}", name="site_show")
-     */
+     */ 
+    // afficher l'article en entier et afficher les commentaires
     public function show(Article $article, Request $request, ObjectManager $manager){
         $commentaire = new Commentaire();
 
@@ -215,16 +218,12 @@ class SiteController extends AbstractController
             $manager->flush();
 
             return $this->redirectToRoute('site_show', ['id' => $article->getId()]);
-        }
-
-        
+        }      
         return $this->render('site/show.html.twig', [
             'article' => $article,
             'commentaireForm' => $form->createView()
         ]);
     }
-
-
 
     // fonction pour rediriger sur la page home
     /**

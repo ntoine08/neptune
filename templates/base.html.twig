@@ -6,23 +6,23 @@
     <title>{% block title %}Neptune{% endblock %}</title>
     <link rel="stylesheet" href="../css/style.css">
     
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {# <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> #}
     <link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css">
     {% block stylesheets %}{% endblock %}
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{ path('home') }}">Neptune</a>
+        <a class="navbar-brand text-white" href="{{ path('home') }}">Neptune</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
             aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse pb-0" id="navbarColor02">
+        <div class="collapse navbar-collapse bg-dark pb-0" id="navbarColor02">
             <ul class="navbar-nav mr-auto pb-0">
-                <li class="nav-item">
+                <li class="nav-item" >
                     <a class="nav-link text-white" href="{{ path('site') }}">Actualités</a>
                 </li>
                 <li class="nav-item">
@@ -65,9 +65,9 @@
         </div>
     </nav>
 
-    <div class="container main">
+
         {% block body %}{% endblock %}
-    </div>
+
 
     <!-- Footer -->
     <footer class="page-footer bg-secondary pt-4 mt-3">
@@ -82,7 +82,7 @@
                 <div class="col-md-6 mt-md-0 mt-3 ">
 
                     <!-- Content -->
-                    <h5 class="text-uppercase text-dark">Neptune</h5>
+                    <h4 class="text-uppercase text-dark">Neptune</h4>
                     <p class="text-dark">Espace de partages et de débats.</p>
 
                 </div>
@@ -94,7 +94,7 @@
                 <div class="col-md-3 mb-md-0 mb-3">
 
                     <!-- Links -->
-                    <h5 class="text-uppercase text-dark">Notre espace</h5>
+                    <h4 class="text-uppercase text-dark">Notre espace</h4>
 
                     <ul class="list-unstyled">
                         <li>
@@ -112,7 +112,7 @@
                 <div class="col-md-3 mb-md-0 mb-3">
 
                     <!-- Links -->
-                    <h5 class="text-uppercase text-dark">Annexes</h5>
+                    <h4 class="text-uppercase text-dark">Annexes</h4>
 
                     <ul class="list-unstyled">
                         <li>

@@ -3,6 +3,7 @@
 {% form_theme formArticle 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
+<div class="container main">
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
@@ -27,6 +28,6 @@
 
     {{ form_end(formArticle) }}
 
-    
+</div> 
 
 {% endblock %}

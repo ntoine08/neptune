@@ -1,43 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container main">
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
         </div>
     {% endfor %}
 
-<section class="articles">
+    <section class="articles">
     
-        <article>
-            <h2 class="gtitre">{{ article.titreArticle }}</h2>
-            <div class="metadata"> Ecrit le {{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }} dans la catégorie {{  article.category.nomCategory }}</div>
-            <div class="content">
-                <img class="image" src="/image/{{ article.imageArticle }}" alt="">
-                <p class="ppp">{{ article.contenuArticle | raw }}</p>
-                <h3 class="titre">{{ article.titre2Article }}</h3>
-                <img class="image" src="/image/{{ article.image2Article }}" alt="">
-                <p class="ppp">{{ article.contenu2Article | raw }}</p>
-                <h3 class="titre">{{ article.titre3Article }}</h3>
-                <p class="ppp">{{ article.contenu3Article | raw }}</p>
-            </div>
-        </article>
+        
 
+        <div class="card my-5" style="max-width: 100%;">
+            <div class="row no-gutters">
+                <div>
+                    <div class="card-body pp">
+                        <h5 class="card-title">{{ article.titreArticle }}</h5>
+                        <p class="card-text"><small class="text-muted"> Ecrit le {{ article.dateArticle | date('d/m/Y') }}
+                         à {{ article.dateArticle | date('H:i') }} dans la catégorie {{  article.category.nomCategory }}</small></p>
+                        <img class="image" src="/image/{{ article.imageArticle }}" alt="">
+                        
+                        <p class="card-text">{{ article.contenuArticle | raw }}</p>
+                        <img class="image" src="/image/{{ article.image2Article }}" alt="">
+                        <h5 class="card-title">{{ article.titre2Article }}</h5>
+                        <p class="card-text">{{ article.contenu2Article | raw }}</p>
+                        <h5 class="card-title">{{ article.titre3Article }}</h5>
+                        <p class="card-text">{{ article.contenu3Article | raw }}</p>              
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <hr class="std">
+    
         <section id="commentaires">
             <h1>{{ article.commentaires | length }} Commentaires :</h1>
             {% for commentaire in article.commentaires %}
-                <div class="comment">
-                    <div class="row">
-                        <div class="col-3">
-                            {{ commentaire.user.pseudo }} (<small>{{ commentaire.dateCommentaire | date('d/m/Y à H:i') }}</small>)
-                        </div>
-                        
-                        <div class="col">
-                            <p>{{ commentaire.contenuCommentaire | raw }}</p>
-                        </div>
+                <div class="card">
+                    <h6 class="card-header">{{ commentaire.user.pseudo }}</h5>
+                    <div class="card-body">
+                        <p class="card-text">{{ commentaire.dateCommentaire | date('d/m/Y à H:i') }}</p>
+                        <p class="card-text">{{ commentaire.contenuCommentaire | raw }}</p>
                         {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('removeCommentaire',{'id': commentaire.id}) }}" class="btn btn-danger">Supprimer</a>
-                        {% endif %}
+                            <a href="{{ path('removeCommentaire',{'id': commentaire.id}) }}" class="btn btn-danger">Supprimer</a>
+                            {% endif %}
                     </div>
                 </div>
             {% endfor %}
@@ -57,6 +64,7 @@
         </section>
 
     
-</section>
+    </section>
+</div>
    
 {% endblock %}

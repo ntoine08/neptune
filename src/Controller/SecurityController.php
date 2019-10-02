@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller; //le contrôleur est une fonction PHP qui est crée et retourne un objet response 
 
 use App\Entity\User;
 use App\Entity\Article;
@@ -25,20 +25,20 @@ class SecurityController extends AbstractController
 
         $form = $this->createForm(RegistrationType::class, $user);
 
-        $form->handleRequest($request);
+        $form->handleRequest($request); // pour traiter les données du formulaire
 
         if($form->isSubmitted() && $form->isValid()) { //si le formulaire est soumis et valide
-            $hash = $encoder->encodePassword($user, $user->getMdp());
+            $hash = $encoder->encodePassword($user, $user->getMdp());// encoder le mot de passe
 
             $user->setMdp($hash);
 
             $manager->persist($user); // pour faire persisté dans le temps le user
             $manager->flush(); //pour le sauvegarder
-
+            //redirection une fois l'inscription faite
             return $this->redirectToRoute('security_login');
         }
-
-        return $this->render('security/registration.html.twig', [
+        // permet de rendre le modèle
+        return $this->render('security/registration.html.twig', [ 
             'form' => $form->createView()
         ]);
     }
@@ -74,7 +74,7 @@ class SecurityController extends AbstractController
 
         $users = $userRepo->findBy([], [], $limits, $starts);
 
-        $totals = count($repo->findAll());
+        $totals = count($userRepo->findAll());
         $pagess = ceil($totals / $limits);
 
         

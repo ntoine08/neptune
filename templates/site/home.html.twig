@@ -4,9 +4,10 @@
 
 {% include 'site/slider.html.twig' %}
 
+<div class="container main">
     <h1 class="ggtitre">Bienvenue sur Neptune</h1>
     <hr class="std">
-    
+
     <div class="card my-5" style="max-width: 100%;">
         <div class="row no-gutters">
             <div class="col-md-4">
@@ -17,7 +18,7 @@
                     <h5 class="card-title">Neptune</h5>
                     <p class="card-text">Neptune est un site communautaire où sont partagés des articles et des débats.
                         Vous pouvez consulter, voir, partager et écrire des sujets. Les sujets sont nombreux et variés :
-                        l'histoire, la géopolitique, l'espace, le sport et bien d'autres peuvent être publiés, 
+                        l'histoire, la géopolitique, l'espace, le sport et bien d'autres peuvent être publiés,
                         la seule chose qui vous soit demandée est simple : suivre les règles.</p>
                     <p class="card-text"><a href="{{ path('reglement') }}">Aller ici</a></p>
                 </div>
@@ -26,7 +27,7 @@
     </div>
 
     <hr class="std">
-    
+
     <div class="card my-5" style="max-width: 100%;">
         <div class="row no-gutters">
             <div class="col-md-4">
@@ -36,14 +37,58 @@
                 <div class="h-100 card-body pp">
                     <h5 class="card-title">La communauté</h5>
                     <p class="card-text">Ici vous pouvez partager vos opinions et vos idées.
-                        Vous rencontrerez de nouvelles personnes avec qui vous pourrez discuter du monde qui nous entoure.
-                        La bienveillance et le partage sont des valeurs auxquelles nous attachons beaucoup d'importance. N'hésitez plus
+                        Vous rencontrerez de nouvelles personnes avec qui vous pourrez discuter du monde qui nous
+                        entoure.
+                        La bienveillance et le partage sont des valeurs auxquelles nous attachons beaucoup d'importance.
+                        N'hésitez plus
                         à nous rejoindre si vous partagez nos convictions ! </p>
                     <p class="card-text"><a href="{{ path('security_registration') }}">Aller ici</a></p>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+
+    <hr class="std">
+</div>
+
+<div class="container-fluid p-0 mt-5">
+    <h5>NOS ATOUTS</h5>
+    
+    <div class=" card-group " style="">   
+      
+        <div class="card">
+            <div class="mx-auto px-4" style="height: 20em;">
+                <img src="/image/pres1.jpg" class="card-img" style="" alt="...">
+            </div>
+            <div class="card-body pp">
+                <h5 class="card-title">Partage de connaissance</h5>
+                <p class="card-text">Nous partageons nos connaissances pour apprendre les uns des autres.</p>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="mx-auto px-4" style="height: 20em;">
+                <img src="/image/pres2.jpg" class="card-img" style="" alt="...">
+            </div>
+            <div class="card-body pp">
+                <h5 class="card-title">Nos débats</h5>
+                <p class="card-text">Nos débats permettent d'échanger nos opinions et d'élargir notre vision des choses.
+                </p>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="mx-auto px-4" style="height: 20em;">
+                <img src="/image/pres4.jpg" class="card-img" style="" alt="...">
+            </div>
+            <div class="card-body pp">
+                <h5 class="card-title">Notre bienveillance</h5>
+                <p class="card-text">Une communauté bienveillante pour un partage serein.</p>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
+    {% endblock %}

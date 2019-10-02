@@ -4,13 +4,14 @@
 
 {% block body %}
 
+<div class="container main">
 <section class="articles">
 
     {% for article in articles %}
         {% if article.NonArticle == 0%}     
-        <div class="card mb-3" style="max-width: 100%;">
+        <div class="card my-5" style="max-width: 100%;">
             <div class="row no-gutters">
-                <div class="mx-auto">
+                <div class="mx-auto card-img">
                     <img src="/image/{{ article.imageArticle }}" class="card-img-top" alt="...">
                 </div>
                 <div>
@@ -43,6 +44,7 @@
     </div>
 
 </section>
+</div>
     
    
 {% endblock %}

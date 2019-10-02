@@ -1,7 +1,7 @@
 /*////////////////////CSS DU FOOTER//////////////////////*/
 
 footer {
-    display: block;
+    display: block; /* pour contrôler la mise en page, commence sur une nouvelle ligne*/
     bottom: 0;
     width: 100%; 
 }
@@ -41,8 +41,15 @@ article a {
 
 /*///////////////////////css du show/////////////////////////////*/
 
-.articles img{
-    margin-bottom: 2em;
+h6{
+    color: black;
+}
+.card-header{
+    background-color: white!important;
+}
+.card-body{
+    background-color: white!important;
+    color: black;
 }
 
 .titre{
@@ -60,14 +67,15 @@ article a {
     margin-bottom: 2em;
 }
 
-button{
-    margin-bottom: 1em!important;
+.btn-outline-primary{
+    margin-top: -1em!important;
 
 }
 
 .ppp{
     width: 100%;
-    background-color: #073642;
+    background-color: #eee;
+    color: black;
     border: 1px solid white;
     padding: 1em;
     border-radius: 1em;
@@ -88,7 +96,18 @@ button{
     border: 1em!important;
     height: 1px;
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
-    
+                    /*linear-gradient sert a faire un dégradé*/
+}
+.navbar-collapse{
+    text-align: center;
+}
+
+.navbar-toggler {
+    border: 1px solid white!important;
+}
+
+.nav-item{
+    padding: 0.5em;
 }
 
 .nav-item:hover{
@@ -99,9 +118,38 @@ button{
     height: 4em!important;
 }
 
+.card-img{
+    overflow: hidden; /* pour géré le dépassement*/
+    height: 25em;
+    width: 100%;
+}
+
 .card-img-top{
-    margin: 0 auto;
+    
     text-align: center;
+    margin: 0 auto;
+    object-fit: cover; /*pour que l'image s'adapte au conteneur*/
+    width: 100%;
+    transform: translateY(-25%); /*pour que l'image se décale en vertical*/
+}
+
+.card-group{
+    padding-top: 1em!important;
+    padding-bottom: 1em!important;
+    background-color: white!important;
+    margin-top: 0!important;
+}
+
+.card-group .card{
+    border: white!important;
+}
+
+h5{
+    display: block;
+    text-align: center!important;
+    background-color: white;
+    margin-bottom: 0!important;
+    padding-top: 1em;
 }
 
 /*/////////////////////////css de la page a propos//////////////////////////////////////////*/
@@ -118,3 +166,37 @@ h5{
     background: red!important;
 }
 
+/*media query pour que ça s'adapte à la taille de l'écran*/
+@media screen and (max-width: 992px) {
+
+.navbar-collapse {
+    margin: 0 -2em;
+}
+
+.btn-outline-primary{
+    margin: 1em!important;
+}
+
+.card-img {
+    height: 18em;
+}
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .card-img {
+        height: 14em;
+    }
+}    
+
+@media screen and (max-width: 576px) {
+
+    .card-img {
+        height: 20em;
+    }
+} 
+
+/*pour afficher les fichier dans la création d'article*/
+.custom-file-label { opacity: 0; }
+.custom-file-input { opacity: 1 !important; }
