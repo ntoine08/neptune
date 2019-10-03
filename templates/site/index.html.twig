@@ -6,9 +6,11 @@
 
 <div class="container main">
 <section class="articles">
-
+<!--boucle for pour les actualités-->
     {% for article in articles %}
+    <!--pour afficher uniquement les actualités-->
     {% if article.NonArticle == 1%}
+    <!-- card pour le contenu des actualités-->
     <div class="card my-5" style="max-width: 100%;">
         <div class="row no-gutters">
             <div class="mx-auto card-img">
@@ -30,7 +32,7 @@
 
     {% endif %}
     {% endfor %}
-
+<!--pagination-->
     <div class="d-flex justify-content-center">
         <ul class="pagination">
             <li class="page-item {% if page == 1 %}disabled{% endif %}">
@@ -49,6 +51,5 @@
 
 </section>
 </div>
-
 
 {% endblock %}

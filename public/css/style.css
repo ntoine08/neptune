@@ -47,10 +47,6 @@ h6{
 .card-header{
     background-color: white!important;
 }
-.card-body{
-    background-color: white!important;
-    color: black;
-}
 
 .titre{
     margin : 1em 0;
@@ -150,6 +146,10 @@ h5{
     background-color: white;
     margin-bottom: 0!important;
     padding-top: 1em;
+}
+h3{
+    font-size: 2.8em!important;
+    text-align: center;
 }
 
 /*/////////////////////////css de la page a propos//////////////////////////////////////////*/

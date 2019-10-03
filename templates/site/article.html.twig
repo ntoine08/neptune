@@ -6,9 +6,11 @@
 
 <div class="container main">
 <section class="articles">
-
+<!--boucle for pour faire apparaitre les articles-->
     {% for article in articles %}
+    <!--pour faire apparaitre uniquement les articles-->
         {% if article.NonArticle == 0%}     
+        <!--card pour le contenu de l'article-->
         <div class="card my-5" style="max-width: 100%;">
             <div class="row no-gutters">
                 <div class="mx-auto card-img">

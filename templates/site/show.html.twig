@@ -2,6 +2,7 @@
 
 {% block body %}
 <div class="container main">
+<!--message pour affirmer que le commentaire a bien été supprimer-->
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
@@ -9,9 +10,7 @@
     {% endfor %}
 
     <section class="articles">
-    
-        
-
+    <!--card pour afficher l'intégralité de l'article-->
         <div class="card my-5" style="max-width: 100%;">
             <div class="row no-gutters">
                 <div>
@@ -36,19 +35,21 @@
     
         <section id="commentaires">
             <h1>{{ article.commentaires | length }} Commentaires :</h1>
+            <!-- boucle for pour afficher les commentaires-->
             {% for commentaire in article.commentaires %}
                 <div class="card">
                     <h6 class="card-header">{{ commentaire.user.pseudo }}</h5>
                     <div class="card-body">
                         <p class="card-text">{{ commentaire.dateCommentaire | date('d/m/Y à H:i') }}</p>
                         <p class="card-text">{{ commentaire.contenuCommentaire | raw }}</p>
+                    <!-- condition pour l'admin, qu'il puisse supprimer des commentaires-->
                         {% if is_granted('ROLE_ADMIN') %}
                             <a href="{{ path('removeCommentaire',{'id': commentaire.id}) }}" class="btn btn-danger">Supprimer</a>
-                            {% endif %}
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
-
+        <!--condition pour savoir si le user est connecté-->
             {% if app.user %}
             {{ form_start(commentaireForm) }}
 
@@ -56,7 +57,7 @@
 
             <button type="submit" class="btn btn-success">Commenter</button>
             {{ form_end(commentaireForm) }}
-
+        <!-- ce qu'il s'affiche si le user n'est pas connecter-->
             {% else %}
                 <h2>Vous ne pouvez pas commenter si vous n'êtes pas connecté</h2>
                 <a href="{{path('security_login')}}" class="btn btn-primary">Se connecter</a>

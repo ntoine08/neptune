@@ -34,8 +34,9 @@ class SiteController extends AbstractController
         $start = $page * $limit - $limit;
 
         $articles = $repo->findBy([], [], $limit, $start);
-        $total = count($repo->findAll());
-        $pages = ceil($total / $limit);
+        $total = count($repo->findAll());// count our compter tout les léments
+
+        $pages = ceil($total / $limit);// ceil pour arondir au nombre supérieur
 
         return $this->render('site/index.html.twig', [
             'controller_name' => 'SiteController',
@@ -85,12 +86,12 @@ class SiteController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
            
-            $imagee = $form->get('imageArticle')->getData();
+            $imagee = $form->get('imageArticle')->getData();// pour récupéré les données de l'image
                 if($imagee != NULL) {
                     $namee = $article->getId().''.mt_rand(0,1000000);// donne un numéro au hasard a l'image quand elle est envoyer dans le dossier
                     $imageNamee = $namee.'.'. $imagee->guessExtension();// récupère l'extension du fichier
                     $imagee->move( // déplacé l'image
-                        $this->getParameter('image_directory'), 
+                        $this->getParameter('image_directory'), // récupéré les paramètres
                         $imageNamee
                     );
                     $article->setImageArticle($imageNamee);
@@ -164,6 +165,7 @@ class SiteController extends AbstractController
                 $manager->flush();
     
                 $this->addFlash('success', 'L\'article a bien été supprimé !');
+                // nom du path pour renvoyer
             return $this->redirectToRoute('security_admin');
         }
 
@@ -186,7 +188,7 @@ class SiteController extends AbstractController
       * @Route("/commentaire/remove/{id}", name="removeCommentaire")
       * @Security("is_granted('ROLE_ADMIN')")
       */
-
+      //pour supprimer les commentaires
       public function removeCommentaire (Commentaire $commentaire, ObjectManager $manager) // pour supprimer un commentaire
       {
         //   $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->find($id);
@@ -217,7 +219,7 @@ class SiteController extends AbstractController
             $manager->persist($commentaire);
             $manager->flush();
 
-            return $this->redirectToRoute('site_show', ['id' => $article->getId()]);
+            return $this->redirectToRoute('site_show', ['id' => $article->getId()]); // retourné à l'article ou on a mi le commentaire
         }      
         return $this->render('site/show.html.twig', [
             'article' => $article,
@@ -246,8 +248,4 @@ class SiteController extends AbstractController
     public function reglement() {
         return $this->render('site/reglement.html.twig');
     }
-
-
-
-    
 }

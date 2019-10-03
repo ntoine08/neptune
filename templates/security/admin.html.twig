@@ -1,12 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} 
+
 
 {% block body %}
 <div class="container main">
+    <!-- faire apparaitre le message en cas de succès-->
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
         </div>
     {% endfor %}
+    <!--pour le tableau-->
     <table class="table table-hover">
         <thead>
             <tr>
@@ -16,6 +19,7 @@
             <th scope="col">Fonctions</th>
             </tr>
         </thead>
+        <!-- boucle for pour faire apparaitre la liste d'article-->
         {% for article in articles %}
         
             <tbody>
@@ -24,13 +28,16 @@
                 <td>User</td>
                 <td>{{ article.dateArticle | date('d/m/Y') }} à {{ article.dateArticle | date('H:i') }}</td>
                 <td>
+                    <!--bouton pour modifier-->
                     <a class="btn btn-success" href="{{ path('site_edit',{'id': article.id}) }}">Modifier</a>
+                    <!--bouton pour supprimer-->
                     <a class="btn btn-danger" href="{{ path('removeArticle',{'id': article.id}) }}">Supprimer</a>
                 </tr>
             </tbody>
         
         {% endfor %}
     </table> 
+    <!--pagination-->
         <div class="d-flex justify-content-center">
             <ul class="pagination">
                 <li class="page-item {% if page == 1 %}disabled{% endif %}">
@@ -55,7 +62,7 @@
             <th scope="col">Fonctions</th>
             </tr>
         </thead>
-
+        <!--boucle for pour les users-->
         {% for user in users %}
         
             <tbody>
@@ -63,19 +70,24 @@
                 <th scope="row">{{ user.pseudo }}</th>
                 <td>{{ user.email }}</td>
                 <td>
+                    <!--bouton pour supprimer le user-->
                     <a href="{{ path('removeUser',{'id': user.id}) }}" class="btn btn-danger">Supprimer</a>
                 </tr>
             </tbody>
         
         {% endfor %}
     </table> 
+    <!--pagination-->
     <div class="d-flex justify-content-center">
             <ul class="pagination">
                 <li class="page-item {% if page == 1 %}disabled{% endif %}">
                 <a class="page-link" href="{{ path('security_admin', {'page': page - 1}) }}">&laquo;</a>
                 </li>
+                <!-- i est un index que j'implémente-->
                 {% for i in 1..pages %}
+                <!-- page active uniquement si la page est égale à i-->
                 <li class="page-item {% if page == i %}active{% endif %}">
+                <!-- le lien à la page sur laquelle on est -->
                 <a class="page-link" href="{{ path('security_admin', {'page': i}) }}">{{ i }}</a>
                 </li>
                 {% endfor %}

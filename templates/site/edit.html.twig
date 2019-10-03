@@ -11,6 +11,7 @@
     {% endfor %}
 
     <h1>Création d'un article</h1>
+    <!--formulaire pour modifier l'article-->
     {{ form_start(formArticle) }}
     {{ form_errors(formArticle)}}
     {{ form_row(formArticle.titreArticle, {'attr': {'placeholder': "Titre de l'article"}}) }}

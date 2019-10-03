@@ -13,6 +13,7 @@
 </head>
 
 <body>
+<!--navbarre-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand text-white" href="{{ path('home') }}">Neptune</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
@@ -28,7 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ path('article') }}">Articles</a>
                 </li>
-
+            <!-- si user connecter celà s'affiche-->
                 {% if app.user %}
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ path('site_create') }}">Créer un article</a>
@@ -41,6 +42,7 @@
 
             </ul>
             <div class="mt-3">
+            <!-- si user non connecter celà s'affiche-->
                 {% if not app.user %}            
                     <button type="button" class="btn btn-outline-primary">
                         <a href="{{ path('security_registration') }}" class="nav-link text-white">Inscription</a>
@@ -56,6 +58,7 @@
                         <a href="{{ path('security_logout') }}" class="nav-link text-white">Déconnexion</a>
                     </button>
                     {% endif %}
+                    <!--si l'admin est connecter ce bouton apparais-->
                     {% if is_granted('ROLE_ADMIN') %}
                     <button type="button" class=" btn btn-outline-primary">
                         <a class="nav-link text-white" href="{{ path('security_admin') }}">Administration</a>
@@ -143,6 +146,7 @@
     </footer>
     <!-- Footer -->
     {% block javascripts %}{% endblock %}
+    <!--lien jquery, javascript, boobstrap-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

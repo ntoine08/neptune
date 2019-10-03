@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<!--inclure le slider-->
 {% include 'site/slider.html.twig' %}
 
 <div class="container main">
     <h1 class="ggtitre">Bienvenue sur Neptune</h1>
     <hr class="std">
-
+<!--partie présentation-->
     <div class="card my-5" style="max-width: 100%;">
         <div class="row no-gutters">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <img src="/image/saturne1.jpeg" class="card-img" style="height: 100%;" alt="...">
             </div>
-            <div class="col-md-8 h-100">
+            <div class="col-md-7 h-100">
                 <div class="card-body pp">
                     <h5 class="card-title">Neptune</h5>
                     <p class="card-text">Neptune est un site communautaire où sont partagés des articles et des débats.
@@ -30,10 +30,10 @@
 
     <div class="card my-5" style="max-width: 100%;">
         <div class="row no-gutters">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <img src="/image/pluton1.jpg" class="card-img" style="height: 100%;" alt="...">
             </div>
-            <div class="col-md-8 h-100">
+            <div class="col-md-7 h-100">
                 <div class="h-100 card-body pp">
                     <h5 class="card-title">La communauté</h5>
                     <p class="card-text">Ici vous pouvez partager vos opinions et vos idées.
@@ -50,7 +50,7 @@
 
     <hr class="std">
 </div>
-
+<!--partie présentation des atouts-->
 <div class="container-fluid p-0 mt-5">
     <h5>NOS ATOUTS</h5>
     
@@ -88,7 +88,24 @@
             </div>
         </div>
     </div>
+    <div class="card my-5" style="max-width: 100%; background-color: #002B36;">
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                <img src="/image/apero2.jpg" class="card-img" style="height: 100%;" alt="...">
+            </div>
+            <div class="col-md-6 h-100" style="">
+                <div class="h-100 card-body">
+                    <h3 class="card-title">Les différents apéro-débats prévu !</h4>
+                    <p class="card-text" style="font-size: 1.5em; text-align: center;">Le 26 novembre 2019 : rendez-vous à partir de 18 heures à la péniche (Charleville-Mézières).</p>
+                    <p class="card-text" style="font-size: 1.5em; text-align: center;">Le 30 novembre 2019 : rendez-vous à partir de 18 heures au bar "Ma Poulperie" (Charleville-Mézières).</p>
+                    <p class="card-text" style="font-size: 1.5em; text-align: center;">Le 12 décembre 2019 : rendez-vous à partir de 18 heures au bar "le central" (Sedan).</p>
+                    <p class="card-text" style="font-size: 1.5em; text-align: center;">Le 24 décembre 2019 : Apéro spécial réveillon, rendez-vous à partir de 17
+                                         heures à la péniche (Charleville-Mézières).</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-    {% endblock %}
+{% endblock %}
