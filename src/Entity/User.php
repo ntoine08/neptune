@@ -18,17 +18,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class User implements UserInterface
 {
-    //CECI EST UNE CONSTANTE
-    CONST MEMBRE = 0;
-    CONST MODERATEUR = 1;
-    CONST ADMINISTRATEUR = 2;
-
-    CONST ROLES = [
-        'Membre' => self::MEMBRE,
-        'Modérateur' => self::MODERATEUR,
-        'Administrateur' => self::ADMINISTRATEUR
-    ];
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

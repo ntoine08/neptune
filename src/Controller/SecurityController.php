@@ -62,7 +62,7 @@ class SecurityController extends AbstractController
         $limit = 10;
 
         $start = $page * $limit - $limit; // 1 * 10 = 10 - 10 = 0 / 2 * 10 = 20 - 10 = 10 donc je part du 10eme article
-        //premier [] ne rien rechercher seulement faire reonter les infos 2eme [] pour ordonner mais laisse vide pas important
+        //premier [] ne rien rechercher seulement faire remonter les infos 2eme [] pour ordonner mais laisse vide pas important
         //pour ce que je souhaite
         $articles = $repo->findBy([], [], $limit, $start); 
 

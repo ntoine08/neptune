@@ -34,7 +34,7 @@ class SiteController extends AbstractController
         $start = $page * $limit - $limit;
 
         $articles = $repo->findBy([], [], $limit, $start);
-        $total = count($repo->findAll());// count our compter tout les léments
+        $total = count($repo->findAll());// count pour compter tout les éléments
 
         $pages = ceil($total / $limit);// ceil pour arondir au nombre supérieur
 
